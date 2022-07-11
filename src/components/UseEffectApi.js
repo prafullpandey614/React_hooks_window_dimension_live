@@ -1,3 +1,4 @@
+import { cleanup } from '@testing-library/react';
 import React,{useState , useEffect} from 'react'
 
 const UseEffectApi = () => {
@@ -11,6 +12,9 @@ const UseEffectApi = () => {
     const [actualWidth, setactualWidth] = useState(window.innerWidth);
     useEffect(()=>{
        window.addEventListener('resize',setWidth);
+       return ()=>{
+           window.removeEventListener('resize',setWidth);
+       }
     })
   return (
         <>
